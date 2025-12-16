@@ -42,9 +42,9 @@
             location = if rootfulSetManually then rootlessDefinitionFile else dockerEnableDefinitionFile;
             evidence =
               if rootfulSetManually then
-                "config.virtualisation.docker.rootless.enable = false;"
+                "config.virtualisation.docker.rootless.enable = false"
               else
-                "config.virtualisation.docker.enable = false;";
+                "config.virtualisation.docker.enable = false";
             confidence = "high";
             recommendation = ''
               Enable rootless mode:
