@@ -66,7 +66,7 @@ package *(read only)*
 
 
 *Default:*
-` "/nix/store/v9xp7hz2bdxcgjcg6xslpgasxsk84nnk-report.json" `
+` builtins.toFile "report.json" (builtins.toJSON config.security.nixsecauditor.findings) `
 
 *Declared by:*
  - [nixos/report/json\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/report/json.nix)
@@ -87,7 +87,7 @@ package *(read only)*
 
 
 *Default:*
-` "/nix/store/f0jdkrjj1sh4zfhfkd1yw1z3h85bqvki-report.md" `
+` builtins.toFile "report.md" … `
 
 *Declared by:*
  - [nixos/report/markdown\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/report/markdown.nix)

@@ -58,6 +58,7 @@ in
         ${if body == "" then "_No findings detected._" else body}
       ''
     );
+    defaultText = lib.literalExpression "builtins.toFile \"report.md\" …";
     readOnly = true;
     description = ''
       Human-readable Markdown report generated from `config.security.nixsecauditor.findings`, the aggregated list of matches from all enabled rules.
