@@ -590,7 +590,7 @@ positives\. Keep it concise\.
 
 
 *Type:*
-string
+string or (null or string) convertible to it
 
 
 
@@ -1117,7 +1117,7 @@ Must not contain secrets\.
 
 
 *Type:*
-string
+string or (null or string) convertible to it
 
 
 
@@ -1144,7 +1144,7 @@ references such as file paths\.
 
 
 *Type:*
-string
+string or (null or string) convertible to it
 
 
 
@@ -1170,7 +1170,7 @@ Short, actionable remediation for this specific match\.
 
 
 *Type:*
-string
+string or (null or string) convertible to it
 
 
 

@@ -27,8 +27,8 @@ let
         };
 
         name = lib.mkOption {
-          apply = lib.trim;
           type = lib.types.str;
+          apply = lib.trim;
           default = name;
           example = "Usage of cleartext user password instead of a hashed password";
           description = ''
@@ -38,7 +38,9 @@ let
         };
 
         description = lib.mkOption {
-          type = lib.types.str;
+          type = lib.types.coercedTo (lib.types.nullOr lib.types.str) (
+            value: if value == null then "<not provided>" else value
+          ) lib.types.str;
           apply = lib.trim;
           default = "<not provided>";
           example = ''
@@ -159,7 +161,9 @@ let
       options = {
 
         location = lib.mkOption {
-          type = lib.types.str;
+          type = lib.types.coercedTo (lib.types.nullOr lib.types.str) (
+            value: if value == null then "<not provided>" else value
+          ) lib.types.str;
           apply = lib.trim;
           default = "<not provided>";
           example = "/etc/nixos/hardware-configuration.nix";
@@ -170,7 +174,9 @@ let
         };
 
         evidence = lib.mkOption {
-          type = lib.types.str;
+          type = lib.types.coercedTo (lib.types.nullOr lib.types.str) (
+            value: if value == null then "<not provided>" else value
+          ) lib.types.str;
           apply = lib.trim;
           default = "<not provided>";
           example = "config.users.users.root.password = \"…\"";
@@ -197,7 +203,9 @@ let
         };
 
         recommendation = lib.mkOption {
-          type = lib.types.str;
+          type = lib.types.coercedTo (lib.types.nullOr lib.types.str) (
+            value: if value == null then "<not provided>" else value
+          ) lib.types.str;
           apply = lib.trim;
           default = "<not provided>";
           example = ''
