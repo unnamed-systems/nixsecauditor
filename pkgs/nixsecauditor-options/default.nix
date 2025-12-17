@@ -19,7 +19,7 @@
                 nixpkgs.hostPlatform = system;
                 system.stateVersion = "26.05";
                 disabledModules = [
-                  (toString self.nixosModules.default + "/rules")
+                  (self.nixosModules.default + "/rules")
                 ];
               }
             ];
