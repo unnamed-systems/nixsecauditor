@@ -724,7 +724,7 @@ one of “log”, “warn”, “throw”
 
 
 *Default:*
-` "throw" `
+` ruleConfig.action `
 
 
 

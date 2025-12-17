@@ -244,6 +244,7 @@ let
             "throw"
           ];
           default = ruleConfig.action;
+          defaultText = lib.literalExpression "ruleConfig.action";
           example = "warn";
           description = ''
             Optional per-match override of the rule's default action.
