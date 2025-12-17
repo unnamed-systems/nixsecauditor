@@ -48,7 +48,7 @@
             confidence = "high";
             recommendation = ''
               Enable rootless mode:
-              `config.virtualisation.docker.rootless.enable = true`.
+              `config.virtualisation.docker.rootless.enable = true`
             '';
           }
         ]

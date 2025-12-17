@@ -47,7 +47,7 @@
                 urls = [ "https://nixos.org/manual/nixos/stable/options#opt-users.users._name_.initialPassword" ];
                 recommendation = ''
                   Replace the cleartext password with a hashed initial password option:
-                  `config.users.users.${lib.strings.escapeNixIdentifier username}.initialHashedPassword`.
+                  `config.users.users.${lib.strings.escapeNixIdentifier username}.initialHashedPassword`
                 '';
               }
             ]

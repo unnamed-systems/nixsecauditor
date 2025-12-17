@@ -31,7 +31,7 @@
           confidence = "high";
           recommendation = ''
             Disable password authentication and use key-based authentication:
-            `config.services.openssh.settings.PasswordAuthentication = false`.
+            `config.services.openssh.settings.PasswordAuthentication = false`
           '';
         };
   };
