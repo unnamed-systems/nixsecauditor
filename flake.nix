@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.url = "github:yunfachi/flake-parts/feat/modulesPath";
     systems.url = "github:nix-systems/default";
     flake-compat = {
       url = "github:NixOS/flake-compat";
@@ -18,50 +18,57 @@
       systems,
       ...
     }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import systems;
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { modulesPath, ... }:
+      {
+        systems = import systems;
 
-      imports = [
-        inputs.git-hooks-nix.flakeModule
-        ./pkgs/nixsecauditor-options
-      ];
+        imports = [
+          inputs.git-hooks-nix.flakeModule
+          ./pkgs/nixsecauditor-options
+        ];
 
-      flake = {
-        nixosModules = {
-          default = ./nixos/default.nix;
+        disabledModules = [
+          (modulesPath + "/nixosModules.nix")
+        ];
+
+        flake = {
+          nixosModules = {
+            default = ./nixos;
+          };
         };
-      };
 
-      perSystem =
-        {
-          system,
-          pkgs,
-          config,
-          ...
-        }:
-        {
-          pre-commit.settings = {
-            src = ./.;
-            hooks = {
-              nixfmt-rfc-style.enable = true;
+        perSystem =
+          {
+            system,
+            pkgs,
+            config,
+            ...
+          }:
+          {
+            pre-commit.settings = {
+              src = ./.;
+              hooks = {
+                nixfmt-rfc-style.enable = true;
 
-              nixsecauditor-generate-options = {
-                enable = true;
-                name = "NixSecAuditor generate options documentation";
-                files = ".*";
-                language = "system";
-                entry =
-                  (pkgs.writeShellScript "nixsecauditor-generate-options.sh" ''
-                    cat $(nix build .#packages.${system}.nixsecauditor-options --print-out-paths --no-link) > ./options.md
-                  '').outPath;
-                stages = [ "pre-commit" ];
+                nixsecauditor-generate-options = {
+                  enable = true;
+                  name = "NixSecAuditor generate options documentation";
+                  files = ".*";
+                  language = "system";
+                  entry =
+                    (pkgs.writeShellScript "nixsecauditor-generate-options.sh" ''
+                      cat $(nix build .#packages.${system}.nixsecauditor-options --print-out-paths --no-link) > ./options.md
+                    '').outPath;
+                  stages = [ "pre-commit" ];
+                };
               };
             };
-          };
 
-          devShells = {
-            default = config.pre-commit.devShell;
+            devShells = {
+              default = config.pre-commit.devShell;
+            };
           };
-        };
-    };
+      }
+    );
 }
