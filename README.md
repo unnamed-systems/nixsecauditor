@@ -4,7 +4,19 @@ Extensible, rule-based static auditor for NixOS configuration code, with multipl
 
 ## Usage
 
-For a full list of available NixOS module options, see [./options.md](./options.md).
+For a complete list of available NixOS module options, see [./options.md](./options.md).
+
+For a complete list of the default NixSecAuditor rules, see [./nixos/rules](./nixos/rules).
+
+To remove all NixSecAuditor rules, add the following to your NixOS configuration:
+
+```nix
+{
+  disabledModules = [
+    (nixsecauditor.nixosModules.default + "/rules")
+  ];
+}
+```
 
 ## Installation
 
