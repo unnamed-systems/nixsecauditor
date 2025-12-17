@@ -1194,6 +1194,32 @@ string or (null or string) convertible to it
 
 
 
+## security\.nixsecauditor\.rules\.\<name>\.matches\.\*\.severity
+
+
+
+Optional per-match override of the rule’s default severity\.
+
+
+
+*Type:*
+one of “info”, “low”, “medium”, “high”, “critical”, “unknown”
+
+
+
+*Default:*
+` ruleConfig.severity `
+
+
+
+*Example:*
+` "critical" `
+
+*Declared by:*
+ - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+
+
+
 ## security\.nixsecauditor\.rules\.\<name>\.matches\.\*\.urls
 
 

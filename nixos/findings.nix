@@ -13,13 +13,13 @@ in
             id
             name
             description
-            severity
             ;
           inherit (match)
             location
             evidence
             confidence
             recommendation
+            severity
             action
             ;
           databases = lib.mergeAttrsConcatenateValues rule.databases match.databases;

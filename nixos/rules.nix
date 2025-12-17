@@ -220,6 +220,23 @@ let
 
         # Additional fields to rule's ones
 
+        severity = lib.mkOption {
+          type = lib.types.enum [
+            "info"
+            "low"
+            "medium"
+            "high"
+            "critical"
+            "unknown"
+          ];
+          default = ruleConfig.severity;
+          defaultText = lib.literalExpression "ruleConfig.severity";
+          example = "critical";
+          description = ''
+            Optional per-match override of the rule's default severity.
+          '';
+        };
+
         action = lib.mkOption {
           type = lib.types.enum [
             "log"
