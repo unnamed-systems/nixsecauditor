@@ -44,7 +44,7 @@
               if rootfulSetManually then
                 "config.virtualisation.docker.rootless.enable = false"
               else
-                "config.virtualisation.docker.enable = false";
+                "config.virtualisation.docker.enable = true";
             confidence = "high";
             recommendation = ''
               Enable rootless mode:
