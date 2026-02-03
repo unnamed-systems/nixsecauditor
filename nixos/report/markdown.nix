@@ -45,8 +45,8 @@ in
           ''
           + lib.optionalString (
             renderDatabases x.databases != ""
-          ) "**Associated vulnerability databases:**\n${renderDatabases x.databases}\n"
-          + lib.optionalString (x.urls != [ ]) "**References:**\n${renderUrls x.urls}\n";
+          ) "\n**Associated vulnerability databases:**\n${renderDatabases x.databases}\n"
+          + lib.optionalString (x.urls != [ ]) "\n**References:**\n${renderUrls x.urls}\n";
 
         body = lib.concatMapStringsSep "\n---\n\n" renderFinding cfg.findings;
       in
