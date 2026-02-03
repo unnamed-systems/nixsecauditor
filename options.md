@@ -1,4 +1,30 @@
+## security\.nixsecauditor\.enable
+
+Whether to enable the impact of NixSecAuditor on evaluating a NixOS configuration\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+*Declared by:*
+ - [nixos](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos)
+
+
+
 ## security\.nixsecauditor\.findings
+
+
 
 Aggregated list of findings from all matches of enabled rules\.
 
@@ -40,7 +66,7 @@ boolean
 
 
 *Default:*
-` true `
+` config.security.nixsecauditor.enable `
 
 
 

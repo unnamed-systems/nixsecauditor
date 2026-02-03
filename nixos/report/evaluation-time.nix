@@ -5,7 +5,8 @@ in
 {
   options.security.nixsecauditor.report.evaluation-time.enable = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = cfg.enable;
+    defaultText = lib.literalExpression "config.security.nixsecauditor.enable";
     example = false;
     description = ''
       Enable or disable evaluation-time reporting of NixSecAuditor findings.
