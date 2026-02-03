@@ -18,7 +18,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [nixos](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos)
+ - [nixos/default\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/default.nix)
 
 
 
