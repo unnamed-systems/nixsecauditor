@@ -1,5 +1,7 @@
 # NixSecAuditor
 
+[![ru](https://img.shields.io/badge/lang-ru-blue.svg)](/README.ru.md)
+
 Extensible, rule-based static auditor for NixOS configuration code, with multiple reporting outputs (JSON, Markdown, evaluation-time warnings and assertions).
 
 ## Usage
