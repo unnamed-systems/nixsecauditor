@@ -18,7 +18,7 @@ boolean
 ` true `
 
 *Declared by:*
- - [nixos/default\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/default.nix)
+ - [nixos/default\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/default.nix)
 
 
 
@@ -39,7 +39,7 @@ list of anything *(read only)*
 ` [ ] `
 
 *Declared by:*
- - [nixos/findings\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/findings.nix)
+ - [nixos/findings\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/findings.nix)
 
 
 
@@ -74,7 +74,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [nixos/report/evaluation-time\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/report/evaluation-time.nix)
+ - [nixos/report/evaluation-time\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/report/evaluation-time.nix)
 
 
 
@@ -95,7 +95,7 @@ package *(read only)*
 ` builtins.toFile "report.json" (builtins.toJSON config.security.nixsecauditor.findings) `
 
 *Declared by:*
- - [nixos/report/json\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/report/json.nix)
+ - [nixos/report/json\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/report/json.nix)
 
 
 
@@ -116,7 +116,7 @@ package *(read only)*
 ` builtins.toFile "report.md" … `
 
 *Declared by:*
- - [nixos/report/markdown\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/report/markdown.nix)
+ - [nixos/report/markdown\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/report/markdown.nix)
 
 
 
@@ -202,7 +202,7 @@ attribute set of (submodule)
 ````
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -229,7 +229,7 @@ boolean
 ` false `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -260,7 +260,7 @@ one of “log”, “warn”, “throw”
 ` "log" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -291,7 +291,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -322,7 +322,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -353,7 +353,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -384,7 +384,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -415,7 +415,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -446,7 +446,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -477,7 +477,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -508,7 +508,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -539,7 +539,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -570,7 +570,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -601,7 +601,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -638,7 +638,7 @@ string or (null or string) convertible to it
 ````
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -665,7 +665,7 @@ string *(read only)*
 ` "cleartext-user-password" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -732,7 +732,7 @@ builtins.concatMap (
 ````
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -758,7 +758,7 @@ one of “log”, “warn”, “throw”
 ` "warn" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -788,7 +788,7 @@ one of “low”, “medium”, “high”
 ` "low" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -819,7 +819,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -850,7 +850,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -881,7 +881,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -912,7 +912,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -943,7 +943,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -974,7 +974,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1005,7 +1005,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1036,7 +1036,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1067,7 +1067,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1098,7 +1098,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1129,7 +1129,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1156,7 +1156,7 @@ string or (null or string) convertible to it
 ` "config.users.users.root.password = \"…\"" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1183,7 +1183,7 @@ string or (null or string) convertible to it
 ` "/etc/nixos/hardware-configuration.nix" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1216,7 +1216,7 @@ string or (null or string) convertible to it
 ````
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1242,7 +1242,7 @@ one of “info”, “low”, “medium”, “high”, “critical”, “unkno
 ` "critical" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1273,7 +1273,7 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1300,7 +1300,7 @@ string
 ` "Usage of cleartext user password instead of a hashed password" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1327,7 +1327,7 @@ one of “info”, “low”, “medium”, “high”, “critical”, “unkno
 ` "critical" `
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 
 
@@ -1359,6 +1359,6 @@ list of string
 ```
 
 *Declared by:*
- - [nixos/rules\.nix](https://github.com/yunfachi/NixSecAuditor/blob/master/nixos/rules.nix)
+ - [nixos/rules\.nix](https://github.com/unnamed-systems/nixsecauditor/blob/master/nixos/rules.nix)
 
 

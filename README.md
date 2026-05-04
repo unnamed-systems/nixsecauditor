@@ -28,7 +28,7 @@ Add `nixsecauditor` as a flake input and include the NixOS module in your system
 
 ```nix
 {
-  inputs.nixsecauditor.url = "github:yunfachi/NixSecAuditor";
+  inputs.nixsecauditor.url = "github:unnamed-systems/nixsecauditor";
 
   outputs = { nixpkgs, nixsecauditor, ... }:
     {
@@ -58,7 +58,7 @@ Import the module directly from the Git repository:
 { pkgs, lib, ... }:
 let
   nixsecauditor = import (builtins.fetchGit {
-    url = "https://github.com/yunfachi/NixSecAuditor";
+    url = "https://github.com/unnamed-systems/nixsecauditor";
   });
 in 
 {

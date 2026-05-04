@@ -30,12 +30,12 @@
           transformDeclaration =
             decl:
             let
-              declStr = lib.filesystem.resolveDefaultNix (toString decl);
+              declStr = toString (lib.filesystem.resolveDefaultNix decl);
               subpath = lib.removePrefix "/" (lib.removePrefix root declStr);
             in
             assert lib.hasPrefix root declStr;
             {
-              url = "https://github.com/yunfachi/NixSecAuditor/blob/master/${toString subpath}";
+              url = "https://github.com/unnamed-systems/nixsecauditor/blob/master/${toString subpath}";
               name = subpath;
             };
 
