@@ -9,7 +9,7 @@
       url = "github:NixOS/flake-compat";
       flake = false;
     };
-    git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    git-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
@@ -24,7 +24,7 @@
         systems = import systems;
 
         imports = [
-          inputs.git-hooks-nix.flakeModule
+          inputs.git-hooks.flakeModule
           ./pkgs/nixsecauditor-options
         ];
 
