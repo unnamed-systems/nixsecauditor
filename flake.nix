@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:yunfachi/flake-parts/feat/modulesPath";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     flake-compat = {
       url = "github:NixOS/flake-compat";
@@ -19,7 +19,6 @@
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
-      { modulesPath, ... }:
       {
         systems = import systems;
 
@@ -29,7 +28,7 @@
         ];
 
         disabledModules = [
-          (modulesPath + "/nixosModules.nix")
+          flake-parts.flakeModules.nixosModules
         ];
 
         flake = {
