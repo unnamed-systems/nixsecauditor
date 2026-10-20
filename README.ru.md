@@ -6,7 +6,7 @@
 
 ## Использование
 
-Полный список доступных опций модуля NixOS см. в [./options.md](./options.md).
+<!-- Полный список доступных опций модуля NixOS см. в [./options.md](./options.md). -->
 
 Полный список правил NixSecAuditor по умолчанию см. в [./nixos/rules](./nixos/rules).
 
@@ -57,10 +57,12 @@
 ```nix
 { pkgs, lib, ... }:
 let
-  nixsecauditor = import (builtins.fetchGit {
-    url = "https://github.com/yunfachi/NixSecAuditor";
-  });
-in 
+  nixsecauditor = "${
+    builtins.fetchGit {
+      url = "https://github.com/unnamed-systems/nixsecauditor";
+    }
+  }/nixos";
+in
 {
   imports = [ nixsecauditor.nixosModules.default ];
 

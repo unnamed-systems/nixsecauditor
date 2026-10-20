@@ -40,7 +40,7 @@
         lib.concatLists (
           lib.concatLists (
             forEachLocation (
-              virtualHostName: virtualHost: locationName: location:
+              virtualHostName: _virtualHost: locationName: location:
               lib.optionals
                 (
                   !lib.hasSuffix "/" locationName

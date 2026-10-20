@@ -94,13 +94,13 @@ in
           ${indent 2 (bold (magenta finding.location))}
 
           ${bold "Evidence:"}
-          ${indent 2 (finding.evidence)}
+          ${indent 2 finding.evidence}
 
           ${bold "Description:"}
-          ${indent 2 (finding.description)}
+          ${indent 2 finding.description}
 
           ${bold "Recommendation:"}
-          ${indent 2 (finding.recommendation)}
+          ${indent 2 finding.recommendation}
           ${gray "──────────────────────────────────────────────────────────────"}
         '';
     in

@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, ... }:
 let
   ruleSubmodule = lib.types.submodule (
     { name, config, ... }:

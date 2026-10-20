@@ -6,7 +6,7 @@ Extensible, rule-based static auditor for NixOS configuration code, with multipl
 
 ## Usage
 
-For a complete list of available NixOS module options, see [./options.md](./options.md).
+<!-- For a complete list of available NixOS module options, see [./options.md](./options.md). -->
 
 For a complete list of the default NixSecAuditor rules, see [./nixos/rules](./nixos/rules).
 
@@ -57,10 +57,12 @@ Import the module directly from the Git repository:
 ```nix
 { pkgs, lib, ... }:
 let
-  nixsecauditor = import (builtins.fetchGit {
-    url = "https://github.com/unnamed-systems/nixsecauditor";
-  });
-in 
+  nixsecauditor = "${
+    builtins.fetchGit {
+      url = "https://github.com/unnamed-systems/nixsecauditor";
+    }
+  }/nixos";
+in
 {
   imports = [ nixsecauditor.nixosModules.default ];
 
