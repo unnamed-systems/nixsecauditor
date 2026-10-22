@@ -6,7 +6,7 @@ Extensible, rule-based static auditor for NixOS configuration code, with multipl
 
 ## Usage
 
-<!-- For a complete list of available NixOS module options, see [./options.md](./options.md). -->
+For a complete list of available NixOS module options, see [nixsecauditor.unnamed.systems/nixos-configuration-options](https://nixsecauditor.unnamed.systems/nixos-configuration-options).
 
 For a complete list of the default NixSecAuditor rules, see [./nixos/rules](./nixos/rules).
 

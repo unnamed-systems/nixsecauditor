@@ -6,7 +6,7 @@
 
 ## Использование
 
-<!-- Полный список доступных опций модуля NixOS см. в [./options.md](./options.md). -->
+Полный список доступных опций модуля NixOS см. в [nixsecauditor.unnamed.systems/nixos-configuration-options](https://nixsecauditor.unnamed.systems/nixos-configuration-options).
 
 Полный список правил NixSecAuditor по умолчанию см. в [./nixos/rules](./nixos/rules).
 
