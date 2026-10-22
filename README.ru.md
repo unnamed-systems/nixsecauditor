@@ -28,7 +28,7 @@
 
 ```nix
 {
-  inputs.nixsecauditor.url = "github:yunfachi/NixSecAuditor";
+  inputs.nixsecauditor.url = "github:unnamed-systems/nixsecauditor";
 
   outputs = { nixpkgs, nixsecauditor, ... }:
     {

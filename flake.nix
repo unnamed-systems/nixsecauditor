@@ -8,9 +8,14 @@
   outputs =
     {
       self,
+      nixpkgs,
       ...
     }:
     let
+      inherit (nixpkgs) lib;
+      systems = lib.systems.flakeExposed;
+      eachSystem = f: lib.genAttrs systems (system: f system nixpkgs.legacyPackages.${system});
+
       devFlake =
         (import (builtins.fetchurl {
           url = "https://raw.githubusercontent.com/NixOS/flake-compat/f275e157c50c3a9a682b4c9b4aa4db7a4cd3b5f2/default.nix";
@@ -26,6 +31,10 @@
     in
     {
       inherit (devOutputs) checks formatter;
+
+      packages = eachSystem (_: pkgs: {
+        docs = pkgs.callPackage ./docs { inherit self; };
+      });
 
       nixosModules = {
         default = self.nixosModules.nixsecauditor;

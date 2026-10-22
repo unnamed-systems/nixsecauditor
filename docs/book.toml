@@ -1,0 +1,28 @@
+[book]
+title = "NixSecAuditor"
+authors = ["yunfachi"]
+description = "Extensible rule-based static security auditor for NixOS configurations with multiple reporting outputs."
+language = "en"
+
+[build]
+create-missing = false
+
+[output.html]
+git-repository-url = "https://github.com/unnamed-systems/nixsecauditor"
+edit-url-template = "https://github.com/unnamed-systems/nixsecauditor/edit/master/docs/{path}"
+additional-css = ["theme/pagetoc.css", "theme/tabs.css"]
+additional-js  = ["theme/pagetoc.js", "theme/tabs.js", "theme/no-edit-generated.js"]
+no-section-label = true
+sidebar-header-nav = false
+
+[output.html.print]
+enable = false
+
+[preprocessor.treesitter]
+command = "mdbook-treesitter"
+languages = ["nix"]
+
+[preprocessor.pagetoc]
+scroll_offset = 10
+
+[preprocessor.tabs]
