@@ -160,6 +160,15 @@ let
     lib.types.submodule {
       options = {
 
+        id = lib.mkOption {
+          type = lib.types.nonEmptyStr;
+          default = "match";
+          example = "alice";
+          description = ''
+            Human-readable unique per-rule ID of this match. Used in `config.security.nix-secrets.ignore`.
+          '';
+        };
+
         location = lib.mkOption {
           type = lib.types.coercedTo (lib.types.nullOr lib.types.str) (
             value: if value == null then "<not provided>" else value

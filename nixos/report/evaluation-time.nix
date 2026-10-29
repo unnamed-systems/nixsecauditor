@@ -12,9 +12,9 @@ in
       Enable or disable evaluation-time reporting of NixSecAuditor findings.
 
       When enabled:
-        - `warn` findings produce NixOS evaluation warnings;
-        - `throw` findings fail evaluation via assertions;
-        - `log` findings are ignored during evaluation.
+      - `warn` findings produce NixOS evaluation warnings;
+      - `throw` findings fail evaluation via assertions;
+      - `log` findings are ignored during evaluation.
 
       When disabled, no warnings or errors are emitted, but all findings are still
       collected for full audit reports or external processing (e.g., CI pipelines).  
@@ -85,7 +85,7 @@ in
           ${bold "NixSecAuditor Finding"}
 
           ${bold "Name"}        : ${bold (cyan finding.name)}
-          ${bold "Rule ID"}     : ${gray finding.id}
+          ${bold "UID"}         : ${gray finding.uid}
           ${bold "Severity"}    : ${colorSeverity finding.severity}
           ${bold "Confidence"}  : ${colorConfidence finding.confidence}
           ${bold "Action"}      : ${colorAction finding.action}

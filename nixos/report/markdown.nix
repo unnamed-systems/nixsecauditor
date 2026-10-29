@@ -25,7 +25,7 @@ in
         renderFinding =
           x:
           ''
-            ## ${x.name} (`${x.id}`)
+            ## ${x.name} (`${x.uid}`)
 
             **Severity:** ${x.severity}  
             **Confidence:** ${x.confidence}  
