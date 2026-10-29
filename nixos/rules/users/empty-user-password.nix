@@ -7,17 +7,27 @@
   config.security.nixsecauditor.rules.empty-user-password = {
     name = "Usage of empty user password";
     description = ''
-      Detects users whose configuration sets an empty password in
-      `config.users.users.<name>.password`, `config.users.users.<name>.initialPassword`,
-      `config.users.users.<name>.hashedPassword`, or `config.users.users.<name>.initialHashedPassword`.
-      Empty passwords allow passwordless login and are a common misconfiguration or
-      deployment mistake that can expose a system to unauthorized access.
-      This rule does not detect empty passwords configured via
+      Detects users for which any of the following options under
+      `config.users.users.<name>` is explicitly set to the empty string:
+      `password`, `initialPassword`, `hashedPassword`, or
+      `initialHashedPassword`.
+
+      An empty password value is a strong indicator of a misconfiguration or a
+      deployment mistake and may allow passwordless login. Note that this rule
+      reports only the presence of an empty value in these specific options. It
+      does not by itself prove that passwordless authentication is possible,
+      since the effective login behavior also depends on:
+      - other password-related options (e.g. `passwordFile`, `hashedPasswordFile`);
+      - `config.users.mutableUsers` (when `true`, passwords can be changed at runtime);
+      - the authentication stack of the services exposed on the host (e.g. whether
+        SSH password authentication is enabled).
+
+      This rule does not inspect empty values configured via
       `config.users.users.<name>.hashedPasswordFile`.
     '';
 
     severity = "critical";
-    action = "throw";
+    action = "warn";
 
     matches = builtins.concatMap (
       { file, value }:
@@ -35,13 +45,17 @@
                   builtins.isString v && v == ""
                 )
                 {
+                  id = "${username}_${field}";
                   location = file;
                   evidence = "config.users.users.${lib.strings.escapeNixIdentifier username}.${field} = \"\"";
                   confidence = "high";
                   recommendation = ''
-                    Remove the empty password and either set a strong password or disable password authentication for this account:
-                    `config.users.users.${lib.strings.escapeNixIdentifier username}.${field} = null`
-                    and prefer SSH keys or another strong authentication method instead.
+                    Remove the empty value from
+                    `config.users.users.${lib.strings.escapeNixIdentifier username}.${field}`
+                    and provide real password via
+                    `config.users.users.${lib.strings.escapeNixIdentifier username}.hashedPasswordFile`.
+
+                    Prefer SSH keys or another strong authentication method over passwords.
                   '';
                 }
             )
