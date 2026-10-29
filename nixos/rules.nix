@@ -165,7 +165,8 @@ let
           default = "match";
           example = "alice";
           description = ''
-            Human-readable unique per-rule ID of this match. Used in `config.security.nix-secrets.ignore`.
+            Human-readable ID of this match, unique within the rule.
+            Used in `config.security.nix-secrets.ignore`.
           '';
         };
 
