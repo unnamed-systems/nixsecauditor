@@ -151,6 +151,86 @@ let
           '';
         };
 
+        tests = lib.mkOption {
+          type = lib.types.attrsOf (
+            lib.types.submodule {
+              options = {
+
+                module = lib.mkOption {
+                  type = lib.types.anything;
+                  default = { };
+                  example = {
+                    users.users.alice.isNormalUser = true;
+                    users.users.alice.password = "qwerty";
+                  };
+                  description = ''
+                    NixOS module imported on top of a default NixOS configuration before evaluating
+                    the rule. `expected` and `forbidden` are checked against the match IDs the rule
+                    produces for this configuration.
+                  '';
+                };
+
+                expected = lib.mkOption {
+                  type = lib.types.listOf lib.types.str;
+                  default = [ ];
+                  example = [
+                    "alice"
+                    "bob-.*"
+                  ];
+                  description = ''
+                    List of extended POSIX regular expressions. Every pattern must match at least
+                    one match ID produced by the rule for `module`, otherwise the test fails with a
+                    "missing" diagnostic. Every ID not covered by any pattern here and not matching
+                    `forbidden` is reported as "unexpected" and fails the test. 
+                  '';
+                };
+
+                forbidden = lib.mkOption {
+                  type = lib.types.listOf lib.types.str;
+                  default = [ ];
+                  example = [
+                    "root"
+                    "guest-.*"
+                  ];
+                  description = ''
+                    List of extended POSIX regular expressions. No match ID may satisfy any of
+                    them, otherwise the test fails with a "forbidden" diagnostic. `forbidden` takes
+                    priority over `expected`: a match satisfying both is classified as
+                    "forbidden", not "expected", and does not count towards covering an
+                    `expected` pattern. Use this to cover edge cases such as an empty module,
+                    missing settings, or other boundary conditions.
+                  '';
+                };
+
+              };
+            }
+          );
+          default = { };
+          example = {
+            cleartext-password = {
+              module = {
+                users.users.alice.isNormalUser = true;
+                users.users.alice.password = "qwerty";
+              };
+              expected = [ "alice" ];
+              forbidden = [ "root" ];
+            };
+
+            hashed-password = {
+              module = {
+                users.users.alice.isNormalUser = true;
+                users.users.alice.hashedPassword = "$6$...";
+              };
+              forbidden = [ ".*" ];
+            };
+          };
+          description = ''
+            Tests for this rule. Each test imports its `module` on top of a default NixOS
+            configuration, evaluates the rule, and checks the resulting match IDs against
+            `expected` and `forbidden`.
+          '';
+        };
+
       };
     }
   );

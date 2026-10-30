@@ -32,13 +32,21 @@
     {
       inherit (devOutputs) checks formatter;
 
-      packages = eachSystem (_: pkgs: {
-        docs = pkgs.callPackage ./docs { inherit self; };
-      });
+      lib = import ./lib { inherit self lib; };
+
+      packages = eachSystem (
+        _: pkgs: {
+          docs = pkgs.callPackage ./docs { inherit self; };
+        }
+      );
 
       nixosModules = {
         default = self.nixosModules.nixsecauditor;
         nixsecauditor = ./nixos;
+      };
+
+      flakeModules = {
+        tests = import ./flake-parts/tests.nix { inherit self; };
       };
     };
 }
