@@ -68,26 +68,104 @@
         ) value
       )
     ) options.users.users.definitionsWithLocations;
-  };
 
-  # tests = {
-  #   positive = map (lib.recursiveUpdate { users.users.alice.isNormalUser = true; }) [
-  #     { users.users.alice.password = ""; }
-  #     { users.users.alice.initialPassword = ""; }
-  #     { users.users.alice.hashedPassword = ""; }
-  #     { users.users.alice.initialHashedPassword = ""; }
-  #   ];
-  #   negative = [
-  #     { }
-  #   ]
-  #   ++ map (lib.recursiveUpdate { users.users.alice.isNormalUser = true; }) [
-  #     { }
-  #     { users.users.alice.password = "a"; }
-  #     { users.users.alice.initialPassword = "a"; }
-  #     { users.users.alice.hashedPassword = "a"; }
-  #     { users.users.alice.initialHashedPassword = "a"; }
-  #     { users.users.alice.initialHashedPassword = "a"; }
-  #     { users.users.alice.hashedPasswordFile = builtins.toFile "empty" ""; }
-  #   ];
-  # };
+    tests = {
+
+      empty-password = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.password = "";
+        };
+        expected = [ "alice_password" ];
+      };
+
+      empty-initialPassword = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.initialPassword = "";
+        };
+        expected = [ "alice_initialPassword" ];
+      };
+
+      empty-hashedPassword = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.hashedPassword = "";
+        };
+        expected = [ "alice_hashedPassword" ];
+      };
+
+      empty-initialHashedPassword = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.initialHashedPassword = "";
+        };
+        expected = [ "alice_initialHashedPassword" ];
+      };
+
+      no-user = {
+        forbidden = [ ".*" ];
+      };
+
+      no-password = {
+        module = {
+          users.users.alice.isNormalUser = true;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      non-empty-password = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.password = "a";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      non-empty-initialPassword = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.initialPassword = "a";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      non-empty-hashedPassword = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.hashedPassword = "a";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      non-empty-initialHashedPassword = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.initialHashedPassword = "a";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      empty-hashedPasswordFile = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.hashedPasswordFile = builtins.toFile "empty" "a";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      complex = {
+        module = {
+          users.users.alice.isNormalUser = true;
+          users.users.alice.password = "";
+
+          users.users.bob.isNormalUser = true;
+          users.users.bob.password = "a";
+        };
+        expected = [ "alice_password" ];
+        forbidden = [ "bob_password" ];
+      };
+
+    };
+  };
 }
