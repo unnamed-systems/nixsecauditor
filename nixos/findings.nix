@@ -36,7 +36,7 @@ in
               ;
             match_id = match;
             uid = "${rule.id}:${match.id}";
-            action = if builtins.elem cfg.ignored "${rule.id}:${match.id}" then "log" else match.action;
+            action = if builtins.elem "${rule.id}:${match.id}" cfg.ignored then "log" else match.action;
             databases = lib.mergeAttrsConcatenateValues rule.databases match.databases;
             urls = rule.urls ++ match.urls;
           }) rule.matches
