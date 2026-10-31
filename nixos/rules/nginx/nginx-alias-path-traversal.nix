@@ -52,6 +52,7 @@
                   builtins.concatMap (
                     { file, value }:
                     lib.optional (value != null) {
+                      id = "${virtualHostName}_${locationName}";
                       location = file;
                       evidence =
                         "config.services.nginx.virtualHosts.${lib.strings.escapeNixIdentifier virtualHostName}"
@@ -79,5 +80,124 @@
           )
         )
       );
+
+    tests = {
+
+      nginx-disabled = {
+        module = {
+          services.nginx.enable = false;
+          services.nginx.virtualHosts.example.locations."/foo".alias = "/var/www";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      no-virtual-hosts = {
+        module = {
+          services.nginx.enable = true;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      no-locations = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.serverName = "example.com";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      no-alias = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."/foo".proxyPass = "http://localhost:8080";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      alias-at-root = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."/".alias = "/var/www/";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      alias-with-trailing-slash = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."/foo/".alias = "/var/www/";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      alias-with-exact-match = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."=/foo".alias = "/var/www";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      alias-with-regex-match = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."~/foo".alias = "/var/www";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      alias-with-regex-case-insensitive-match = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."~*/foo".alias = "/var/www";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      alias-without-trailing-slash = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."/foo".alias = "/var/www";
+        };
+        expected = [ "example_/foo" ];
+      };
+
+      alias-with-prefix-match-modifier = {
+        module = {
+          services.nginx.enable = true;
+          services.nginx.virtualHosts.example.locations."^~/foo".alias = "/var/www";
+        };
+        expected = [ "example_\\^~/foo" ];
+      };
+
+      complex = {
+        module = {
+          services.nginx.enable = true;
+
+          services.nginx.virtualHosts.example.locations."/safe/".alias = "/var/www/safe";
+          services.nginx.virtualHosts.example.locations."=/exact".alias = "/var/www/exact";
+          services.nginx.virtualHosts.example.locations."~/regex".alias = "/var/www/regex";
+          services.nginx.virtualHosts.example.locations."~*/regex-ci".alias = "/var/www/regex-ci";
+          services.nginx.virtualHosts.example.locations."/unsafe".alias = "/var/www/unsafe";
+          services.nginx.virtualHosts.example.locations."^~/unsafe2".alias = "/var/www/unsafe2";
+
+          services.nginx.virtualHosts.other.locations."/unsafe3".alias = "/var/www/unsafe3";
+          services.nginx.virtualHosts.other.locations."/safe2/".alias = "/var/www/safe2";
+        };
+        expected = [
+          "example_/unsafe"
+          "example_\\^~/unsafe2"
+          "other_/unsafe3"
+        ];
+        forbidden = [
+          "example_/safe/"
+          "example_=/exact"
+          "example_~/regex"
+          "example_~*/regex-ci"
+          "other_/safe2/"
+        ];
+      };
+
+    };
   };
 }

@@ -54,5 +54,52 @@
         ]
       else
         [ ];
+
+    tests = {
+
+      docker-disabled = {
+        forbidden = [ ".*" ];
+      };
+
+      docker-disabled-rootless-enabled = {
+        module = {
+          virtualisation.docker.enable = false;
+          virtualisation.docker.rootless.enable = true;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      docker-disabled-rootless-disabled = {
+        module = {
+          virtualisation.docker.enable = false;
+          virtualisation.docker.rootless.enable = false;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      docker-enabled-rootless-default = {
+        module = {
+          virtualisation.docker.enable = true;
+        };
+        expected = [ "match" ];
+      };
+
+      docker-enabled-rootless-enabled = {
+        module = {
+          virtualisation.docker.enable = true;
+          virtualisation.docker.rootless.enable = true;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      docker-enabled-rootless-disabled = {
+        module = {
+          virtualisation.docker.enable = true;
+          virtualisation.docker.rootless.enable = false;
+        };
+        expected = [ "match" ];
+      };
+
+    };
   };
 }

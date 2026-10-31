@@ -34,5 +34,52 @@
             `config.services.openssh.settings.PasswordAuthentication = false`
           '';
         };
+
+    tests = {
+
+      ssh-disabled = {
+        forbidden = [ ".*" ];
+      };
+
+      ssh-disabled-password-authentication-enabled = {
+        module = {
+          services.openssh.enable = false;
+          services.openssh.settings.PasswordAuthentication = true;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      ssh-enabled-password-authentication-default = {
+        module = {
+          services.openssh.enable = true;
+        };
+        expected = [ "match" ];
+      };
+
+      ssh-enabled-password-authentication-enabled = {
+        module = {
+          services.openssh.enable = true;
+          services.openssh.settings.PasswordAuthentication = true;
+        };
+        expected = [ "match" ];
+      };
+
+      ssh-enabled-password-authentication-disabled = {
+        module = {
+          services.openssh.enable = true;
+          services.openssh.settings.PasswordAuthentication = false;
+        };
+        forbidden = [ ".*" ];
+      };
+
+      ssh-enabled-password-authentication-null = {
+        module = {
+          services.openssh.enable = true;
+          services.openssh.settings.PasswordAuthentication = null;
+        };
+        forbidden = [ ".*" ];
+      };
+
+    };
   };
 }

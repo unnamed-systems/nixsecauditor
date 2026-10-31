@@ -20,6 +20,7 @@
       if config.services.openssh.settings.PermitRootLogin == "yes" then
         [
           {
+            id = "yes";
             location =
               (lib.findFirst ({ file, value }: value == "yes") { }
                 options.services.openssh.settings.valueMeta.configuration.options.PermitRootLogin.definitionsWithLocations
@@ -42,6 +43,7 @@
       then
         [
           {
+            id = "prohibit-password";
             location =
               (lib.findFirst ({ file, value }: value == config.services.openssh.settings.PermitRootLogin) { }
                 options.services.openssh.settings.valueMeta.configuration.options.PermitRootLogin.definitionsWithLocations
@@ -58,5 +60,55 @@
         ]
       else
         [ ];
+
+    tests = {
+
+      permit-root-login-no = {
+        module = {
+          services.openssh.settings.PermitRootLogin = "no";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      permit-root-login-forced-commands-only = {
+        module = {
+          services.openssh.settings.PermitRootLogin = "forced-commands-only";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      permit-root-login-yes = {
+        module = {
+          services.openssh.settings.PermitRootLogin = "yes";
+        };
+        expected = [ "yes" ];
+        forbidden = [ "prohibit-password" ];
+      };
+
+      permit-root-login-prohibit-password = {
+        module = {
+          services.openssh.settings.PermitRootLogin = "prohibit-password";
+        };
+        expected = [ "prohibit-password" ];
+        forbidden = [ "yes" ];
+      };
+
+      permit-root-login-without-password = {
+        module = {
+          services.openssh.settings.PermitRootLogin = "without-password";
+        };
+        expected = [ "prohibit-password" ];
+        forbidden = [ "yes" ];
+      };
+
+      ssh-disabled-permit-root-login-yes = {
+        module = {
+          services.openssh.enable = false;
+          services.openssh.settings.PermitRootLogin = "yes";
+        };
+        expected = [ "yes" ];
+      };
+
+    };
   };
 }

@@ -36,5 +36,51 @@
         ]
       else
         [ ];
+
+    tests = {
+
+      no-module = {
+        forbidden = [ ".*" ];
+      };
+
+      permit-empty-passwords-no = {
+        module = {
+          services.openssh.settings.PermitEmptyPasswords = "no";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      permit-empty-passwords-yes = {
+        module = {
+          services.openssh.settings.PermitEmptyPasswords = "yes";
+        };
+        expected = [ "match" ];
+      };
+
+      ssh-enabled-permit-empty-passwords-no = {
+        module = {
+          services.openssh.enable = true;
+          services.openssh.settings.PermitEmptyPasswords = "no";
+        };
+        forbidden = [ ".*" ];
+      };
+
+      ssh-enabled-permit-empty-passwords-yes = {
+        module = {
+          services.openssh.enable = true;
+          services.openssh.settings.PermitEmptyPasswords = "yes";
+        };
+        expected = [ "match" ];
+      };
+
+      ssh-disabled-permit-empty-passwords-yes = {
+        module = {
+          services.openssh.enable = false;
+          services.openssh.settings.PermitEmptyPasswords = "yes";
+        };
+        expected = [ "match" ];
+      };
+
+    };
   };
 }
