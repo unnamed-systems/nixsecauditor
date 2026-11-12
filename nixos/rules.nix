@@ -251,7 +251,7 @@ let
       options = {
 
         id = lib.mkOption {
-          type = lib.types.strMatching "[A-Za-z0-9._-]+";
+          type = lib.types.singleLineStr;
           default = "match";
           example = "alice";
           description = ''
