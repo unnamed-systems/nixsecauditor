@@ -145,6 +145,16 @@ let
               )
             ) options.users.users.definitionsWithLocations;
           '';
+          apply =
+            matches:
+            let
+              grouped = lib.groupBy (m: m.id) matches;
+              duplicates = lib.filterAttrs (_: v: builtins.length v > 1) grouped;
+            in
+            lib.throwIf (duplicates != { }) (
+              "security.nixsecauditor.rules.${lib.strings.escapeNixIdentifier config.id}: matches must have unique id, but the following are duplicated: "
+              + lib.concatMapStringsSep ", " lib.strings.escapeNixString (builtins.attrNames duplicates)
+            ) matches;
           description = ''
             Matches produced by this rule. Each match is a structured object
             (location, evidence, confidence, recommendation, databases, urls, action).
