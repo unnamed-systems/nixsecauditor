@@ -16,7 +16,7 @@ let
         };
 
         id = lib.mkOption {
-          type = lib.types.str;
+          type = lib.types.strMatching "[A-Za-z0-9._-]+";
           default = name;
           readOnly = true;
           example = "cleartext-user-password";
@@ -251,7 +251,7 @@ let
       options = {
 
         id = lib.mkOption {
-          type = lib.types.nonEmptyStr;
+          type = lib.types.strMatching "[A-Za-z0-9._-]+";
           default = "match";
           example = "alice";
           description = ''
