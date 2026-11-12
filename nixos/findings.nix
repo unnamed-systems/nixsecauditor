@@ -34,7 +34,7 @@ in
               recommendation
               severity
               ;
-            match_id = match;
+            match_id = match.id;
             uid = "${rule.id}:${match.id}";
             action = if builtins.elem "${rule.id}:${match.id}" cfg.ignored then "log" else match.action;
             databases = lib.mergeAttrsConcatenateValues rule.databases match.databases;
