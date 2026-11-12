@@ -32,11 +32,14 @@
       evalTest =
         rule_name: rule: test_name: test:
         let
-          matches =
-            map (m: m.id)
-              ((configuration.extendModules { modules = [ test.module ]; })
-                .config.security.nixsecauditor.rules.${rule_name}
-              ).matches;
+          matches = map (m: m.id) (
+            let
+              rule =
+                (configuration.extendModules { modules = [ test.module ]; })
+                .config.security.nixsecauditor.rules.${rule_name};
+            in
+            builtins.deepSeq rule rule.matches
+          );
 
           kind =
             id:
