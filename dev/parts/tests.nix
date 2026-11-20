@@ -2,8 +2,10 @@
   imports = [ inputs.nixsecauditor.flakeModules.tests ];
 
   nixsecauditor.tests = {
-    modules = [ inputs.nixsecauditor.nixosModules.default ];
-    allowMissingTests = false;
-    disableBuiltinRules = false;
+    nixsecauditor-rule-tests = {
+      modules = [ ];
+      allowMissingTests = false;
+      disableBuiltinRules = false;
+    };
   };
 }

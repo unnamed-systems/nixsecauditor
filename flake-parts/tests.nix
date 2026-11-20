@@ -2,28 +2,20 @@
   options = {
 
     nixsecauditor.tests = lib.mkOption {
-      type = lib.types.submodule {
-        freeformType = lib.types.attrsOf lib.types.anything;
-
-        options.checkName = lib.mkOption {
-          type = lib.types.str;
-          default = "nixsecauditor-rules-tests";
-          description = ''
-            Used as the attribute name in `perSystem.checks.<checkName>`. The check is
-            built by `nix flake check`.
-          '';
-        };
-      };
+      type = lib.types.attrsOf (lib.types.attrsOf lib.types.anything);
       default = { };
       example = lib.literalExpression ''
         {
-          modules = [ self.nixosModules.nixsecauditor-rules ]; 
+          nixsecauditor-rule-tests = {
+            modules = [ self.nixosModules.nixsecauditor-rules ]; 
+          };
         }
       '';
       description = ''
-        Arguments that are passed into the `nixsecauditor.lib.checkTests`. The
-        `checkName` option is removed before the call, and `system` is added from the
-        current `perSystem`.
+        An attribute set where each key becomes an attribute in
+        `perSystem.checks.<key>`, and its value is passed as arguments to
+        `nixsecauditor.lib.checkTests`. The `system` from the current
+        `perSystem` is added to those arguments automatically.
       '';
     };
 
@@ -32,9 +24,9 @@
   config = {
 
     perSystem = { system, ... }: {
-      checks.${config.nixsecauditor.tests.checkName} = self.lib.checkTests (
-        (removeAttrs config.nixsecauditor.tests [ "checkName" ]) // { inherit system; }
-      );
+      checks = lib.mapAttrs
+        (_name: args: self.lib.checkTests ({ inherit system; } // args))
+        config.nixsecauditor.tests;
     };
 
   };
