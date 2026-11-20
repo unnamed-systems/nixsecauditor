@@ -7,5 +7,11 @@
       allowMissingTests = false;
       disableBuiltinRules = false;
     };
+
+    nixsecauditor-integration-tests = {
+      modules = [ inputs.nixsecauditor.nixosModules.integrationTestRules ];
+      allowMissingTests = false;
+      disableBuiltinRules = true;
+    };
   };
 }

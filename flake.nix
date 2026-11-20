@@ -43,6 +43,8 @@
       nixosModules = {
         default = self.nixosModules.nixsecauditor;
         nixsecauditor = ./nixos;
+
+        integrationTestRules = ./integrationTestRules;
       };
 
       flakeModules = {
