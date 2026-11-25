@@ -181,7 +181,7 @@ in
                 ];
               };
             };
-            expected = [ "throw;test:test;[^;]*;[^;]*;[^;]*;${lib.escapeRegex name}" ];
+            expected = [ "assertion;test:test;[^;]*;[^;]*;[^;]*;${lib.escapeRegex name}" ];
           };
       };
 
