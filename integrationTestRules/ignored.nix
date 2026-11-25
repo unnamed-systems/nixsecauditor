@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
-{
+{ config, lib, ... }: {
   config.security.nixsecauditor.rules.nixsecauditor-ignored = {
     name = "NixSecAuditor's `ignored` option";
     description = ''

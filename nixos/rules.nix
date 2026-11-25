@@ -1,8 +1,7 @@
 { lib, ... }:
 let
   ruleSubmodule = lib.types.submodule (
-    { name, config, ... }:
-    {
+    { name, config, ... }: {
       options = {
 
         enable = lib.mkOption {

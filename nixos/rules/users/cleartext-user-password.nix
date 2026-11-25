@@ -1,9 +1,4 @@
-{
-  options,
-  lib,
-  ...
-}:
-{
+{ options, lib, ... }: {
   config.security.nixsecauditor.rules.cleartext-user-password = {
     name = "Usage of cleartext user password instead of a hashed password";
     description = ''
@@ -141,7 +136,10 @@
           users.users.alice.password = "a";
           users.users.alice.initialPassword = "b";
         };
-        expected = [ "alice_password" "alice_initialPassword" ];
+        expected = [
+          "alice_password"
+          "alice_initialPassword"
+        ];
       };
 
       complex = {

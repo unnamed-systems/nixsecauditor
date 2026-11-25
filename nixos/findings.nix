@@ -22,10 +22,7 @@ in
         rule:
         lib.optionals rule.enable (
           map (match: {
-            inherit (rule)
-              name
-              description
-              ;
+            inherit (rule) name description;
             rule_id = rule.id;
             inherit (match)
               location

@@ -1,9 +1,4 @@
-{
-  options,
-  lib,
-  ...
-}:
-{
+{ options, lib, ... }: {
   config.security.nixsecauditor.rules.empty-user-password = {
     name = "Usage of empty user password";
     description = ''

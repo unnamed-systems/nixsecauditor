@@ -1,9 +1,4 @@
-{
-  options,
-  lib,
-  ...
-}:
-{
+{ options, lib, ... }: {
   config.security.nixsecauditor.rules.firewall-allowed-ports = {
     name = "Allowed firewall ports";
     description = ''
@@ -16,10 +11,8 @@
 
     matches =
       let
-        formatItem = item:
-          if builtins.isAttrs item
-          then "${toString item.from}-${toString item.to}"
-          else toString item;
+        formatItem =
+          item: if builtins.isAttrs item then "${toString item.from}-${toString item.to}" else toString item;
 
         fn =
           field:
@@ -78,7 +71,11 @@
 
       allowedTCPPorts = {
         module = {
-          networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+          networking.firewall.allowedTCPPorts = [
+            22
+            80
+            443
+          ];
         };
         expected = [
           "allowedTCPPorts_22"
@@ -107,7 +104,10 @@
       allowedTCPPortRanges = {
         module = {
           networking.firewall.allowedTCPPortRanges = [
-            { from = 8000; to = 8100; }
+            {
+              from = 8000;
+              to = 8100;
+            }
           ];
         };
         expected = [ "allowedTCPPortRanges_8000-8100" ];
@@ -121,7 +121,10 @@
       allowedUDPPortRanges = {
         module = {
           networking.firewall.allowedUDPPortRanges = [
-            { from = 60000; to = 61000; }
+            {
+              from = 60000;
+              to = 61000;
+            }
           ];
         };
         expected = [ "allowedUDPPortRanges_60000-61000" ];
@@ -134,7 +137,10 @@
 
       multiple-ports-in-one-list = {
         module = {
-          networking.firewall.allowedTCPPorts = [ 22 80 ];
+          networking.firewall.allowedTCPPorts = [
+            22
+            80
+          ];
         };
         expected = [
           "allowedTCPPorts_22"
@@ -145,8 +151,14 @@
       multiple-ranges-in-one-list = {
         module = {
           networking.firewall.allowedTCPPortRanges = [
-            { from = 8000; to = 8100; }
-            { from = 9000; to = 9100; }
+            {
+              from = 8000;
+              to = 8100;
+            }
+            {
+              from = 9000;
+              to = 9100;
+            }
           ];
         };
         expected = [
@@ -165,13 +177,23 @@
 
       complex = {
         module = {
-          networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+          networking.firewall.allowedTCPPorts = [
+            22
+            80
+            443
+          ];
           networking.firewall.allowedUDPPorts = [ 53 ];
           networking.firewall.allowedTCPPortRanges = [
-            { from = 8000; to = 8100; }
+            {
+              from = 8000;
+              to = 8100;
+            }
           ];
           networking.firewall.allowedUDPPortRanges = [
-            { from = 60000; to = 61000; }
+            {
+              from = 60000;
+              to = 61000;
+            }
           ];
         };
         expected = [

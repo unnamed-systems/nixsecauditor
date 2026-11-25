@@ -1,9 +1,4 @@
-{
-  lib,
-  self,
-  ...
-}:
-{
+{ lib, self, ... }: {
   checkTests =
     {
       system,
@@ -30,7 +25,7 @@
         match_ids: regex: builtins.any (match_id: builtins.match regex match_id != null) match_ids;
 
       evalTest =
-        rule_name: rule: test_name: test:
+        rule_name: _rule: test_name: test:
         let
           matches = map (m: m.id) (
             let

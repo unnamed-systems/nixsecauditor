@@ -19,9 +19,7 @@
 
       Ensuring a trailing slash or using an exact match mitigates this risk.
     '';
-    urls = [
-      "https://github.com/yandex/gixy/blob/master/docs/en/plugins/aliastraversal.md"
-    ];
+    urls = [ "https://github.com/yandex/gixy/blob/master/docs/en/plugins/aliastraversal.md" ];
 
     severity = "high";
     action = "throw";

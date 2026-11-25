@@ -17,9 +17,7 @@
       "CWE-250"
       "CWE-269"
     ];
-    urls = [
-      "https://docs.docker.com/engine/security/rootless/"
-    ];
+    urls = [ "https://docs.docker.com/engine/security/rootless/" ];
 
     severity = "high";
     action = "warn";

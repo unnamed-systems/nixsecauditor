@@ -6,11 +6,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }:
+    { self, nixpkgs, ... }:
     let
       inherit (nixpkgs) lib;
       systems = lib.systems.flakeExposed;
@@ -34,11 +30,7 @@
 
       lib = import ./lib { inherit self lib; };
 
-      packages = eachSystem (
-        _: pkgs: {
-          docs = pkgs.callPackage ./docs { inherit self; };
-        }
-      );
+      packages = eachSystem (_: pkgs: { docs = pkgs.callPackage ./docs { inherit self; }; });
 
       nixosModules = {
         default = self.nixosModules.nixsecauditor;

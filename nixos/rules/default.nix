@@ -1,4 +1,1 @@
-{ lib, ... }:
-{
-  imports = builtins.filter (path: path != ./default.nix) (lib.fileset.toList ./.);
-}
+{ lib, ... }: { imports = builtins.filter (path: path != ./default.nix) (lib.fileset.toList ./.); }
