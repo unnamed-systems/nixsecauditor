@@ -54,9 +54,7 @@ let
           module
           {
             _module.check = false;
-            disabledModules = [
-              (module + "/rules")
-            ];
+            disabledModules = [ (module + "/rules") ];
           }
         ];
       };
@@ -109,9 +107,7 @@ stdenv.mkDerivation {
 
   patchPhase = ''
     echo "# NixOS Configuration Options" > docs/src/nixos-configuration-options.md
-    cat ${
-      optionsDoc { module = self.nixosModules.default; }
-    } >> docs/src/nixos-configuration-options.md
+    cat ${optionsDoc { module = self.nixosModules.default; }} >> docs/src/nixos-configuration-options.md
 
     mkdir -p docs/treesitter/nix
 

@@ -24,9 +24,9 @@
   config = {
 
     perSystem = { system, ... }: {
-      checks = lib.mapAttrs
-        (_name: args: self.lib.checkTests ({ inherit system; } // args))
-        config.nixsecauditor.tests;
+      checks = lib.mapAttrs (
+        _name: args: self.lib.checkTests ({ inherit system; } // args)
+      ) config.nixsecauditor.tests;
     };
 
   };
